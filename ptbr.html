@@ -145,8 +145,8 @@
       <h2>Como usar?</h2>
       <p>Da próxima vez que alguém jogar um monte de texto de LLM sem editar no seu DM, no Slack, na code review, na
         real, em qualquer lugar, manda isso aqui:</p>
-      <p class="u-center u-mt-lg"><button type="button" class="url-tag-big" onclick="copyTag(this)"
-          aria-label="Copiar dontquotetheai.com para clipboard">dontquotetheai.com</button></p>
+      <p class="u-center u-mt-lg"><button id="copyBtn" type="button" class="url-tag-big" onclick="copyTag(this)"
+          aria-label="Copiar dontpastetheai.com para clipboard">dontpastetheai.com</button></p>
       <p class="u-center u-small u-muted u-mt-md">Clique pra copiar. Sem necessidade de explicações.</p>
     </section>
 
@@ -168,6 +168,13 @@
 
   </main>
   <script>
+    (function setCopyDomain() {
+      const target = location.hostname.replace(/^www\./, '');
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = target;
+      btn.dataset.copy = target;
+      btn.setAttribute('aria-label', `Copiar ${target} para clipboard`);
+    })();
     function copyTag(el) {
       const text = el.dataset.copy || el.textContent.trim();
       if (!el.dataset.copy) el.dataset.copy = text;

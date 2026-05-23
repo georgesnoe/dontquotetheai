@@ -139,8 +139,8 @@
       <h2>How to use this</h2>
       <p>Next time someone drops an amazing set of unedited LLM text in your DMs, your Slack, your code review, anywhere
         really, send them this:</p>
-      <p class="u-center u-mt-lg"><button type="button" class="url-tag-big" onclick="copyTag(this)"
-          aria-label="Copy dontquotetheai.com to clipboard">dontquotetheai.com</button></p>
+      <p class="u-center u-mt-lg"><button id="copyBtn" type="button" class="url-tag-big" onclick="copyTag(this)"
+          aria-label="Copy dontpastetheai.com to clipboard">dontpastetheai.com</button></p>
       <p class="u-center u-small u-muted u-mt-md">Click to copy. No explanation needed — they'll know.</p>
     </section>
 
@@ -161,6 +161,13 @@
 
   </main>
   <script>
+    (function setCopyDomain() {
+      const target = location.hostname.replace(/^www\./, '');
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = target;
+      btn.dataset.copy = target;
+      btn.setAttribute('aria-label', `Copy ${target} to clipboard`);
+    })();
     function copyTag(el) {
       const text = el.dataset.copy || el.textContent.trim();
       if (!el.dataset.copy) el.dataset.copy = text;
