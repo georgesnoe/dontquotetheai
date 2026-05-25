@@ -31,6 +31,7 @@
   <link rel="alternate" hreflang="zh-TW" href="https://dontquotetheai.com/angry/zhtw.html">
   <link rel="alternate" hreflang="zh-CN" href="https://dontquotetheai.com/angry/zh-cn.html">
   <link rel="alternate" hreflang="x-default" href="https://dontquotetheai.com/angry/">
+  <script src="../assets/translations.js" defer></script>
 </head>
 
 <body>
@@ -40,13 +41,7 @@
       <div class="doc-meta">
         <span>In case you want to get roasted in your own language:</span>
         <label class="lang" aria-label="Language">
-          <select onchange="if(this.value)location.href=this.value">
-            <option value="" selected>EN — English</option>
-            <option value="ptbr.html">PT — Português (BR)</option>
-            <option value="ru.html">RU — Русский</option>
-            <option value="zhtw.html">ZH — 繁體中文 (台灣)</option>
-            <option value="zh-cn.html">ZH — 简体中文</option>
-          </select>
+          <select data-lang-select><option>EN — English</option></select>
         </label>
       </div>
       <h1>Don't quote<br>the <span class="yell">AI</span> at me.</h1>

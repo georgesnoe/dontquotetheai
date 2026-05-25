@@ -34,6 +34,7 @@
   <link rel="alternate" hreflang="zh-TW" href="https://dontquotetheai.com/angry/zhtw.html">
   <link rel="alternate" hreflang="zh-CN" href="https://dontquotetheai.com/angry/zh-cn.html">
   <link rel="alternate" hreflang="x-default" href="https://dontquotetheai.com/angry/">
+  <script src="../assets/translations.js" defer></script>
 </head>
 
 <body>
@@ -43,13 +44,7 @@
       <div class="doc-meta">
         <span>如果你想看自己母語的炎上版本：</span>
         <label class="lang" aria-label="Language">
-          <select onchange="if(this.value)location.href=this.value">
-            <option value="./">EN — English</option>
-            <option value="ptbr.html">PT — Português (BR)</option>
-            <option value="ru.html">RU — Русский</option>
-            <option value="zhtw.html" selected>ZH — 繁體中文 (台灣)</option>
-            <option value="zh-cn.html">ZH — 简体中文</option>
-          </select>
+          <select data-lang-select><option>EN — English</option></select>
         </label>
       </div>
       <h1>不要在那邊給我<br>無腦貼 <span class="yell">AI</span>。</h1>

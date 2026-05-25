@@ -1,0 +1,34 @@
+{
+  "languages": [
+    {
+      "code": "en",
+      "hreflang": "en",
+      "label": "EN — English",
+      "file": "index.html"
+    },
+    {
+      "code": "ptbr",
+      "hreflang": "pt-BR",
+      "label": "PT — Português (BR)",
+      "file": "ptbr.html"
+    },
+    {
+      "code": "ru",
+      "hreflang": "ru",
+      "label": "RU — Русский",
+      "file": "ru.html"
+    },
+    {
+      "code": "zh-tw",
+      "hreflang": "zh-TW",
+      "label": "ZH — 繁體中文 (台灣)",
+      "file": "zhtw.html"
+    },
+    {
+      "code": "zh-cn",
+      "hreflang": "zh-CN",
+      "label": "ZH — 简体中文",
+      "file": "zh-cn.html"
+    }
+  ]
+}

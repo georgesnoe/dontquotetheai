@@ -30,6 +30,8 @@ CSS and assets live at the root (`/styles.css`, `/assets/`). Angry pages referen
 
 The copy button reads `location.hostname` on load and copies whichever domain the visitor landed on (dontpastetheai.com or dontquotetheai.com). The static button text in the HTML is there as a fallback if JS doesn't run.
 
+The language dropdown is built at runtime by `assets/translations.js` from `assets/translations.json`. Each HTML file just ships `<select data-lang-select><option>EN — English</option></select>` (the English option is a no-JS fallback); the script clears that and repopulates from the JSON. `<link rel="alternate" hreflang="...">` tags stay static in each `<head>` on purpose — Googlebot renders JS but Bing / Yandex / Baidu are flaky about it, and we'd rather not gamble on SEO for the RU and ZH versions.
+
 ## How to translate
 
 Each language is one HTML file per version. You need to translate **both** smooth and angry (they're separate with different tones, not one doc).
@@ -37,7 +39,7 @@ Each language is one HTML file per version. You need to translate **both** smoot
 ### The process
 
 1. Pick a language code ([BCP 47 format](https://en.wikipedia.org/wiki/IETF_language_tag)) — `pt-BR` not `pt_BR`, `zh-CN` not `zh_cn`, etc.
-2. Copy the files:
+2. Copy the files. Smooth and angry **share filenames** — `ptbr.html` lives at both `/ptbr.html` and `/angry/ptbr.html`:
    - `index.html` → `<code>.html` (smooth)
    - `angry/index.html` → `angry/<code>.html` (angry)
    So for Spanish: `es.html` and `angry/es.html`.
@@ -53,14 +55,24 @@ Each language is one HTML file per version. You need to translate **both** smoot
      - smooth: `https://dontpastetheai.com/<code>.html`
      - angry: `https://dontpastetheai.com/angry/<code>.html`
 4. Don't touch these:
-   - CSS classes, HTML structure, `<script>` logic
+   - CSS classes, HTML structure, `<script>` logic, the `<select data-lang-select>` markup
    - The `dontpastetheai.com` text in the copy button (JS rewrites it at runtime)
+   - The fallback `<option>EN — English</option>` inside the select (it's there for no-JS, and the script clears it before populating)
    - Font links, OG image paths (just change the filename suffix)
    - Cross-link `href` (smooth → `angry/<code>.html`, angry → `../<code>.html`)
    - GitHub link, nohello/dontasktoask links, YouTube "mad" link
-   - In angry files, the `../styles.css` and `../assets/...` relative paths
-5. Add your language `<option>` to the `<select>` in **every** existing HTML file (all smooth, all angry, yours included). Format: `<option value="yourfile.html">XX — Native Name</option>`. Mark your own language as selected in your file.
-6. Add `hreflang` links in the `<head>` of **every** existing HTML file, pointing to yours. Smooth links to smooth, angry links to angry:
+   - In angry files, the `../styles.css` and `../assets/translations.js` relative paths
+5. Register the language **once** in `assets/translations.json`:
+   ```json
+   {
+     "code": "es",
+     "hreflang": "es",
+     "label": "ES — Español",
+     "file": "es.html"
+   }
+   ```
+   Same `file` value applies to both smooth (`/es.html`) and angry (`/angry/es.html`). The dropdown in every existing page picks it up automatically — no per-file `<option>` edits.
+6. Add `hreflang` links in the `<head>` of **every** existing HTML file, pointing to yours. These are intentionally kept static (not JS-injected) so Bing, Yandex, and Baidu pick them up reliably. Smooth links to smooth, angry links to angry:
    ```html
    <!-- in smooth pages -->
    <link rel="alternate" hreflang="xx-XX" href="https://dontpastetheai.com/yourfile.html">
