@@ -49,7 +49,7 @@ In each of your two new files, translate:
 - `<html lang="...">` attribute (set it to your language)
 - Everything visible inside `<header>`, `<section>`, `<blockquote>`, `<ol>`, `.shout`, `.signature`, `.footer`
 - The language `<select>` `aria-label`
-- The cross-link button text (red `.cta-angry` on smooth, green `.cta-calm` on angry)
+- The cross-link button text (red `.cta-angry` on smooth, green `.cta-calm` on angry). Keep the `data-variant-toggle` attribute and the static `href` as-is — `assets/translations.js` rewrites the `href` at runtime to point at the matching counterpart file, so you only translate the visible label.
 - `og:url` and `<link rel="canonical">` should point at your file:
   - smooth: `https://dontpastetheai.com/<code>.html`
   - angry: `https://dontpastetheai.com/angry/<code>.html`
@@ -77,7 +77,7 @@ In each of your two new files, translate:
 
 - CSS classes, HTML structure, the `<select data-lang-select>` markup
 - Font links and OG image paths (just change the filename suffix)
-- Cross-link `href` (smooth → `angry/<code>.html`, angry → `../<code>.html`)
+- The `data-variant-toggle` attribute on the smooth↔angry cross-link button — `assets/translations.js` derives its `href` from the current page name, so a stale `href` in the markup gets overwritten
 - GitHub link, nohello/dontasktoask links, YouTube "mad" link
 - In angry files, the `../styles.css` and `../assets/` relative paths
 - `assets/copy.js` — it's shared by every page
