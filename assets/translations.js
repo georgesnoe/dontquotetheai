@@ -11,7 +11,15 @@
 // HTML contract:
 //   <select data-lang-select></select>   — gets populated with <option>s
 (function () {
-  const here = location.pathname.split("/").pop() || "index.html";
+  // Cloudflare serves *.html at clean URLs (e.g. /it -> it.html), so the
+  // pathname's last segment may be missing the extension. Normalize so the
+  // value matches the "file" entries in translations.json.
+  const last = location.pathname.split("/").pop() || "";
+  const here = !last
+    ? "index.html"
+    : last.endsWith(".html")
+      ? last
+      : `${last}.html`;
   const isAngry = location.pathname.includes("/angry/");
   const dataUrl = (isAngry ? "../" : "") + "assets/translations.json";
 
