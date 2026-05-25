@@ -15,6 +15,15 @@
   const isAngry = location.pathname.includes("/angry/");
   const dataUrl = (isAngry ? "../" : "") + "assets/translations.json";
 
+  // Variant toggle: links marked with [data-variant-toggle] flip between the
+  // polite (/) and angry (/angry/) version of the *current* page, so each
+  // translated file doesn't have to hardcode its counterpart href.
+  const file = here === "index.html" ? "" : here;
+  const toggleHref = isAngry ? `../${file}` : `angry/${file}`;
+  document.querySelectorAll("[data-variant-toggle]").forEach((a) => {
+    a.href = toggleHref;
+  });
+
   fetch(dataUrl)
     .then((r) => r.json())
     .then(({ languages }) => {
