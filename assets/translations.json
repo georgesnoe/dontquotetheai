@@ -35,6 +35,12 @@
       "hreflang": "it",
       "label": "IT — Italiano",
       "file": "it.html"
+    },
+    {
+      "code": "fr",
+      "hreflang": "fr",
+      "label": "FR — Français",
+      "file": "fr.html"
     }
   ]
 }
